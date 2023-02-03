@@ -1,5 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Beers from './components/molecules/Beers.vue';
+import Header from './components/organisms/Header.vue';
+</script>
 
 <template>
-  <h1 className="underline font-bold text-red-400 text-3xl">Hello world!</h1>
+  <Header />
+  <Beers />
 </template>
+0
