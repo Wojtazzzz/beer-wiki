@@ -1,3 +1,5 @@
 <template>
-  <h1 class="text-3xl font-medium">Beer Wiki</h1>
+  <a href="/">
+    <span class="text-3xl font-medium">Beer Wiki</span>
+  </a>
 </template>

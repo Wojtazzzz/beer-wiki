@@ -1,17 +1,28 @@
+<script setup lang="ts">
+defineProps<{
+  id: number;
+  name: string;
+  ibu: number | null;
+  food_pairing_count: number;
+}>();
+</script>
+
 <template>
-  <div class="w-64 p-4 rounded-md shadow-md bg-[#eeeeee] flex flex-col items-center gap-3">
-    <h2>BEER NAME</h2>
+  <a :href="`/beers/${id}`">
+    <article class="w-64 p-3 rounded-md shadow-md bg-[#eeeeee] flex flex-col items-center gap-6">
+      <h2 class="text-center text-lg">{{ name }}</h2>
 
-    <div class="w-full flex justify-between">
-      <p>
-        <span>IBU: </span>
-        <span>XXX</span>
-      </p>
+      <div class="w-full flex justify-between items-center text-sm">
+        <div>
+          <span>IBU: </span>
+          <span>{{ ibu ?? '-' }}</span>
+        </div>
 
-      <p>
-        <span>FoodPairing: </span>
-        <span>XXX</span>
-      </p>
-    </div>
-  </div>
+        <div>
+          <span>Food pairing: </span>
+          <span>{{ food_pairing_count }}</span>
+        </div>
+      </div>
+    </article>
+  </a>
 </template>

@@ -6,7 +6,10 @@ import SearchForm from '../molecules/SearchForm.vue';
 <template>
   <div class="shadow-md">
     <header class="container mx-auto px-4 py-6 flex justify-between items-center">
-      <AppName />
+      <h1>
+        <AppName />
+      </h1>
+
       <SearchForm />
     </header>
   </div>
