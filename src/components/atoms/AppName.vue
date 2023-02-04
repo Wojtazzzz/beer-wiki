@@ -1,5 +1,5 @@
 <template>
-  <a href="/">
+  <router-link to="/">
     <span class="text-3xl font-medium">Beer Wiki</span>
-  </a>
+  </router-link>
 </template>

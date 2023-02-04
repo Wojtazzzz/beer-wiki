@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
 import './tailwind.css';
-import App from './App.vue';
 import { VueQueryPlugin } from '@tanstack/vue-query';
+import { router } from './router';
+import App from './App.vue';
 
 const vueQueryPluginConfig = {
   queryClientConfig: {
@@ -12,4 +13,5 @@ const vueQueryPluginConfig = {
     },
   },
 };
-createApp(App).use(VueQueryPlugin, vueQueryPluginConfig).mount('#app');
+
+createApp(App).use(router).use(VueQueryPlugin, vueQueryPluginConfig).mount('#app');
