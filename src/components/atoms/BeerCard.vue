@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <a :href="`/beers/${id}`">
     <article class="w-64 p-3 rounded-md shadow-md bg-[#eeeeee] flex flex-col items-center gap-6">
-      <h2 class="text-center text-lg">{{ name }}</h2>
+      <h3 class="text-center text-lg">{{ name }}</h3>
 
       <div class="w-full flex justify-between items-center text-sm">
         <div>

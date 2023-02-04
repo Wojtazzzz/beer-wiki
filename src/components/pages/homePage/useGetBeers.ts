@@ -3,12 +3,15 @@ import { useQuery } from '@tanstack/vue-query';
 import { getBeersQK } from '../../../utils/queryKeys';
 import { fetcher } from '../../../utils/fetcher';
 import { beersSchema } from '../../../utils/schemas';
+import type { BeerFromList } from '../../../utils/types';
+
+type Response = BeerFromList[];
 
 const queryFn = async (page: number) => {
-  return await fetcher(`/beers?page=${page}&per_page=25`, beersSchema);
+  return await fetcher<Response>(`/beers?page=${page}&per_page=25`, beersSchema);
 };
 
-export const useBeers = () => {
+export const useGetBeers = () => {
   const currentPage = ref(1);
   const { data, isLoading, isError } = useQuery({
     queryKey: getBeersQK(currentPage),
