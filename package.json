@@ -8,6 +8,8 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
+    "test:e2e": "npx cypress run",
+    "cypress": "npx cypress open",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -23,6 +25,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/test-utils": "^2.2.10",
     "autoprefixer": "^10.4.13",
+    "cypress": "^12.5.1",
     "eslint": "^8.33.0",
     "eslint-plugin-vue": "^9.9.0",
     "jsdom": "^21.1.0",

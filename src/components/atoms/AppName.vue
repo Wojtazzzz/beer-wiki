@@ -1,5 +1,3 @@
 <template>
-  <router-link to="/">
-    <span class="text-3xl font-medium">Beer Wiki</span>
-  </router-link>
+  <span class="text-3xl font-medium">Beer Wiki</span>
 </template>
