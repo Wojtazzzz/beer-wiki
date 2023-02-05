@@ -13,12 +13,12 @@ const { beers, isEmpty, isError, isLoading } = useGetBeers({ page, name, ibu });
 </script>
 
 <template>
-  <Header :changePage="changePage" />
+  <Header />
 
   <Container>
     <Loader v-if="isLoading" />
-    <EmptyList v-else-if="isEmpty" />
-    <FetchError v-else-if="isError" />
+    <EmptyList v-else-if="isEmpty">There is no beers to display</EmptyList>
+    <FetchError v-else-if="isError">Something went wrong, please try again later</FetchError>
     <BeersList v-else :beers="beers" :page="page" :changePage="changePage" />
   </Container>
 </template>

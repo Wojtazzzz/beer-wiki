@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import AppName from '../atoms/AppName.vue';
 import SearchForm from '../molecules/searchForm/SearchForm.vue';
-
-defineProps<{
-  changePage: (newPage: number) => void;
-}>();
 </script>
 
 <template>
@@ -14,7 +10,7 @@ defineProps<{
         <AppName />
       </h1>
 
-      <SearchForm :changePage="changePage" />
+      <SearchForm />
     </header>
   </div>
 </template>

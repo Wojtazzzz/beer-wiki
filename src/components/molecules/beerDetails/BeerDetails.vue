@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { parseNickname } from './parseNickname';
-import { Beer } from '../../../utils/types';
+import type { Beer } from '../../../utils/types';
 import FoodPairing from '../../atoms/FoodPairing.vue';
 import { useRouter } from 'vue-router';
 import Button from '../../atoms/Button.vue';
 
-defineProps<{
-  beer?: Beer[0];
+const props = defineProps<{
+  beer?: Beer[number];
 }>();
 
 const { back } = useRouter();
+
+const parsedNickname = parseNickname(props.beer?.contributed_by);
 </script>
 
 <template>
@@ -23,7 +25,7 @@ const { back } = useRouter();
         <div class="flex gap-3">
           <span class="italic font-medium">{{ beer?.tagline }}</span>
           <span>IBU: {{ beer?.ibu ?? '-' }}</span>
-          <span>IBV: {{ beer?.ibv ?? '-' }}</span>
+          <span>ABV: {{ beer?.abv ?? '-' }}</span>
         </div>
 
         <p>{{ beer?.description }}</p>
@@ -45,7 +47,7 @@ const { back } = useRouter();
   <section>
     <h4>
       Author:
-      {{ parseNickname(beer?.contributed_by) }}
+      {{ parsedNickname }}
     </h4>
   </section>
 </template>

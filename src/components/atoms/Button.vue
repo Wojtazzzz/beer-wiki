@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type ButtonVariant = 'primary' | 'secondary' | '';
+type ButtonVariant = 'primary' | 'secondary';
 
 defineProps<{
   variant: ButtonVariant;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BeerFromList } from '../../utils/types';
+import type { BeerFromList } from '../../utils/types';
 import BeerCard from '../atoms/BeerCard.vue';
 import Pagination from '../atoms/Pagination.vue';
 

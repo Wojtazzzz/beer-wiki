@@ -13,7 +13,7 @@ export const beerSchema = z.array(
   z.object({
     id: z.number(),
     name: z.string(),
-    ibv: z.number().optional(),
+    abv: z.number().optional(),
     ibu: z.number().nullable(),
     food_pairing: z.array(z.string()),
     tagline: z.string(),
