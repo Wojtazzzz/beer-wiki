@@ -5,8 +5,8 @@ import Pagination from '../atoms/Pagination.vue';
 
 defineProps<{
   beers?: BeerFromList[];
-  currentPage: number;
-  toPage: (newPage: number) => void;
+  page: number;
+  changePage: (newPage: number) => void;
 }>();
 </script>
 
@@ -20,6 +20,6 @@ defineProps<{
   </ul>
 
   <div class="mt-12 flex justify-end">
-    <Pagination @to-page="toPage" :currentPage="currentPage" />
+    <Pagination :page="page" :changePage="changePage" />
   </div>
 </template>

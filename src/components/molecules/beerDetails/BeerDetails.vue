@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { parseNickname } from './parseNickname';
 import { Beer } from '../../../utils/types';
-import GoBackButton from '../../atoms/GoBackButton.vue';
 import FoodPairing from '../../atoms/FoodPairing.vue';
+import { useRouter } from 'vue-router';
+import Button from '../../atoms/Button.vue';
 
 defineProps<{
   beer?: Beer[0];
 }>();
+
+const { back } = useRouter();
 </script>
 
 <template>
@@ -27,7 +30,14 @@ defineProps<{
       </header>
     </div>
 
-    <GoBackButton />
+    <Button
+      variant="primary"
+      aria-label="Redirect to previous page"
+      type="button"
+      class="h-fit"
+      @click="back"
+      >Back</Button
+    >
   </div>
 
   <FoodPairing :pairing="beer?.food_pairing" />

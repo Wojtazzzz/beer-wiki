@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Container from '../../atoms/Container.vue';
 import BeerDetails from '../../molecules/beerDetails/BeerDetails.vue';
 import { useBeer } from './useBeer';
 
@@ -6,8 +7,11 @@ const { beer, isLoading, isError } = useBeer();
 </script>
 
 <template>
-  <FetchError v-if="isError" />
-  <Loader v-else-if="isLoading" />
+  <h1 class="sr-only">Beer Wiki</h1>
 
-  <BeerDetails v-else :beer="beer" />
+  <Container>
+    <FetchError v-if="isError" />
+    <Loader v-else-if="isLoading" />
+    <BeerDetails v-else :beer="beer" />
+  </Container>
 </template>

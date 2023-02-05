@@ -1,36 +1,52 @@
-import { ref } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
 import { getBeersQK } from '../../../utils/queryKeys';
 import { fetcher } from '../../../utils/fetcher';
 import { beersSchema } from '../../../utils/schemas';
 import type { BeerFromList } from '../../../utils/types';
+import { Ref } from 'vue';
 
 type Response = BeerFromList[];
-
-const queryFn = async (page: number) => {
-  return await fetcher<Response>(`/beers?page=${page}&per_page=25`, beersSchema);
+export type QueryFnArgs = {
+  page: Ref<number>;
+  name: Ref<string | undefined>;
+  ibu: Ref<number>;
 };
 
-export const useGetBeers = () => {
-  const currentPage = ref(1);
+const queryFn = async (args: QueryFnArgs) => {
+  const path = getSearchPath(args);
+  return await fetcher<Response>(`/beers?${path}`, beersSchema);
+};
+
+export const useGetBeers = (params: QueryFnArgs) => {
   const { data, isLoading, isError } = useQuery({
-    queryKey: getBeersQK(currentPage),
-    queryFn: async () => await queryFn(currentPage.value),
+    queryKey: getBeersQK(params.page),
+    queryFn: async () => await queryFn(params),
     keepPreviousData: true,
   });
-
-  const toPage = (newPage: number) => {
-    currentPage.value = Math.max(newPage, 1);
-  };
 
   const isEmpty = Number(data.value?.length) <= 0;
 
   return {
     beers: data,
-    currentPage,
     isEmpty,
     isLoading,
     isError,
-    toPage,
   };
+};
+
+const getSearchPath = ({ page, name, ibu }: QueryFnArgs) => {
+  const searchParams = new URLSearchParams();
+
+  searchParams.append('page', String(page.value));
+  searchParams.append('per_page', '25');
+
+  if (Boolean(name?.value)) {
+    searchParams.append('beer_name', String(name.value));
+  }
+
+  if (Boolean(ibu?.value)) {
+    searchParams.append('ibu', String(ibu.value));
+  }
+
+  return searchParams.toString();
 };
