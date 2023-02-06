@@ -9,7 +9,7 @@ import Container from '../../atoms/Container.vue';
 import { useSearchParams } from './useSearchParams';
 
 const { page, name, ibu, changePage } = useSearchParams();
-const { beers, isEmpty, isError, isLoading } = useGetBeers({ page, name, ibu });
+const { beers, isError, isLoading } = useGetBeers({ page, name, ibu });
 </script>
 
 <template>
@@ -17,8 +17,8 @@ const { beers, isEmpty, isError, isLoading } = useGetBeers({ page, name, ibu });
 
   <Container>
     <Loader v-if="isLoading" />
-    <EmptyList v-else-if="isEmpty">There is no beers to display</EmptyList>
     <FetchError v-else-if="isError">Something went wrong, please try again later</FetchError>
+    <EmptyList v-else-if="(beers?.length ?? 0) <= 0">There are no beers to display</EmptyList>
     <BeersList v-else :beers="beers" :page="page" :changePage="changePage" />
   </Container>
 </template>

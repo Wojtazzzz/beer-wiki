@@ -11,7 +11,7 @@ const queryFn = async (beerId: number) => {
   return await fetcher<Response>(`/beers/${beerId}`, beerSchema);
 };
 
-export const useBeer = () => {
+export const useGetBeer = () => {
   const route = useRoute();
   const beerId = Number(route.params.id);
 

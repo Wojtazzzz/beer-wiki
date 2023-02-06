@@ -3,7 +3,7 @@ import { getBeersQK } from '../../../utils/queryKeys';
 import { fetcher } from '../../../utils/fetcher';
 import { beersSchema } from '../../../utils/schemas';
 import type { BeerFromList } from '../../../utils/types';
-import { Ref } from 'vue';
+import { ref, Ref } from 'vue';
 
 type Response = BeerFromList[];
 export type QueryFnArgs = {
@@ -18,17 +18,14 @@ const queryFn = async (args: QueryFnArgs) => {
 };
 
 export const useGetBeers = (params: QueryFnArgs) => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: getBeersQK(params.page),
     queryFn: async () => await queryFn(params),
     keepPreviousData: true,
   });
 
-  const isEmpty = Number(data.value?.length) <= 0;
-
   return {
     beers: data,
-    isEmpty,
     isLoading,
     isError,
   };

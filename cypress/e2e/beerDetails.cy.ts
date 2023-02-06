@@ -1,52 +1,5 @@
-describe('tests', () => {
-  // it('Home page', () => {
-  //   cy.visit('/');
-
-  //   cy.get('h1').should('have.text', 'Beer Wiki');
-  //   cy.get('h2').should('have.text', 'List of Beers');
-
-  //   cy.get('ul li').should('have.length', 25);
-
-  //   // check first element is first beer
-  //   cy.get('ul li')
-  //     .first()
-  //     .within(() => {
-  //       cy.get('a').should('have.attr', 'href', '/beers/1');
-  //     });
-
-  //   cy.get('nav[aria-label="Pagination"]').within(() => {
-  //     cy.get('button').contains(2).click();
-  //   });
-
-  //   cy.url().should('contain', '?page=2');
-
-  //   // if first element has another link than previous, pagination works
-  //   cy.get('ul li')
-  //     .first()
-  //     .within(() => {
-  //       cy.get('a').should('not.have.attr', 'href', '/beers/1');
-  //     });
-
-  //   cy.get('ul li').should('have.length', 25);
-
-  //   cy.get('nav[aria-label="Pagination"]').within(() => {
-  //     cy.get('button').contains(3).click();
-  //   });
-
-  //   cy.url().should('contain', '?page=3');
-
-  //   cy.get('ul li').should('have.length', 25);
-
-  //   cy.get('nav[aria-label="Pagination"]').within(() => {
-  //     cy.get('button').contains(4).click();
-  //   });
-
-  //   cy.get('ul li').should('have.length', 25);
-
-  //   cy.url().should('contain', '?page=4');
-  // });
-
-  it('Beer details page', () => {
+describe('Beer details page tests', () => {
+  it('check page with mocked data', () => {
     cy.intercept('https://api.punkapi.com/v2/beers/1', { fixture: 'beer.json' }).as('beerRequest');
 
     cy.visit('/');
@@ -88,5 +41,21 @@ describe('tests', () => {
     cy.get('button').contains('Back').click();
 
     cy.url().should('equal', Cypress.config().baseUrl + '/');
+  });
+
+  it('error when fetching beer', () => {
+    cy.intercept('https://api.punkapi.com/v2/beers/1', { statusCode: 500, body: {} }).as(
+      'beerRequest',
+    );
+
+    cy.visit('/');
+
+    cy.get('ul li')
+      .first()
+      .within(() => {
+        cy.get('a').should('have.attr', 'href', '/beers/1').click();
+      });
+
+    cy.contains('Something went wrong, please try again later');
   });
 });
