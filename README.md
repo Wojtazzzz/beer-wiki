@@ -1,3 +1,4 @@
+# Zadanie rekrutacyjne
 ## Ważne informacje
 
 W aplikacji zabrakło funkcjonalności wyszukiwania piwa po nazwie oraz filtracji po wartości IBU. Miałem z tym problemy, więc pominąłem ten punkt i skupiłem się na następnych. Jest to spowodowane niskim doświadczeniem w pracy z Vue.js. 
